@@ -39,10 +39,7 @@ public class DbUserRepository implements IDbUserRepository {
 	@Override
 	public Boolean createDataBaseForUser(DbUser user) {
 		String createDbQuery = "CREATE DATABASE "+ user.getDatabaseName() + " OWNER " + user.getUserName();
-		//String createDbQuery = "CREATE DATABASE "+ user.getDatabaseName();
-		//String privileageQuery = "GRANT ALL PRIVILEGES ON DATABASE "+ user.getDatabaseName() + " TO "+ user.getUserName();
 		template.execute(createDbQuery);
-		//template.execute(privileageQuery);
 		return true;
 	}
 

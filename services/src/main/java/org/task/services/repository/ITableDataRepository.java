@@ -1,6 +1,9 @@
 package org.task.services.repository;
 
+import java.sql.SQLException;
+
 import org.task.services.model.ColumnStatistics;
+import org.task.services.model.DbUser;
 import org.task.services.model.TableStatistics;
 
 /**
@@ -10,67 +13,28 @@ import org.task.services.model.TableStatistics;
  */
 public interface ITableDataRepository {
 	
+
 	/**
 	 * Gets the statistics about column in a table 
+	 * @param user {@link DbUser}
 	 * @param tableName name of table
-	 * @param columnName name of column
+	 * @param columnNamename of column
 	 * @return {@link ColumnStatistics} column statistics contains min, max, avg, median value of the column. 
-	 * 
+	 * @throws SQLException sql exception
+	 * @throws ClassNotFoundException class not found exception
 	 */
-	public ColumnStatistics getColumnStatistics(String tableName, String columnName);
+	public ColumnStatistics getColumnStatistics(DbUser user, String tableName, String columnName) throws SQLException, ClassNotFoundException;
 	
-	/**
-	 * Gets the maximum value in column of table
-	 * @param tableName table name 
-	 * @param columnName column name
-	 * @return the maximum value
-	 */
-	public String getMaxValue(String tableName, String columnName);
 	
-	/**
-	 * Gets the minimum value in column
-	 * @param tableName table name
-	 * @param columnName column name
-	 * @return the minimum value
-	 */
-	public String getMinValue(String tableName, String columnName);
-	
-	/**
-	 * Gets the average value in column
-	 * @param tableName table name
-	 * @param columnName column name
-	 * @return the average value in the column
-	 */
-	public String getAverageValue(String tableName, String columnName);
-	
-	/**
-	 * Gets the median value in the column
-	 * @param tableName table name
-	 * @param columnName column name
-	 * @return the median value in the column
-	 */
-	public String getMedianValue(String tableName, String columnName);
-	
-	/**
-	 * Get the record count in the table
-	 * @param tableName table name
-	 * @return the number of rows in the table 
-	 */
-	public String getNumberOfRecordsInTable(String tableName);
-	
-	/**
-	 * Gets the number of attributes in the column
-	 * @param tableName table name
-	 * @return the number of columns in the table
-	 * 
-	 */
-	public Integer getNumberOfAttributesInTable(String tableName);
-	
+
 	/**
 	 * Gets the statistics about a table
+	 * @param user {@link DbUser}
 	 * @param tableName name of the table
-	 * @return {@link TableStatistics}  
+	 * @return  {@link TableStatistics}  
+	 * @throws SQLException
+	 * @throws ClassNotFoundException
 	 */
-	public TableStatistics getTableStatistics(String tableName);
+	public TableStatistics getTableStatistics(DbUser user, String tableName) throws SQLException, ClassNotFoundException;
 	
 }
